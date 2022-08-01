@@ -50,9 +50,10 @@ export default function SignUp() {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
-                    </Avatar>
+                    </Avatar> */}
+
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
@@ -100,12 +101,12 @@ export default function SignUp() {
                                     autoComplete="new-password"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <FormControlLabel
                                     control={<Checkbox value="allowExtraEmails" color="primary" />}
                                     label="I want to receive inspiration, marketing promotions and updates via email."
                                 />
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                         <Button
                             type="submit"
