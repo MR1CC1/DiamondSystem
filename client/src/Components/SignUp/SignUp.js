@@ -11,7 +11,8 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createStyles, createTheme, ThemeProvider } from '@mui/material/styles';
+import { green } from '@mui/material/colors';
 
 function Copyright(props) {
     return (
@@ -53,9 +54,12 @@ export default function SignUp() {
                     {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar> */}
+                    <Grid item xs={12}>
+                        <img style={{ marginBottom: 30 }} src="/sistemasDiamondLogo.png" alt="" />
+                    </Grid>
 
                     <Typography component="h1" variant="h5">
-                        Sign up
+                        Cadastre-se
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
