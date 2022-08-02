@@ -16,7 +16,7 @@ import {
     BrowserRouter,
     BrowserRouter as Router,
     Route,
-    Routes
+    Routes,
 } from 'react-router-dom';
 import SignUp from '../SignUp/SignUp';
 
