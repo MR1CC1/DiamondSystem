@@ -14,13 +14,14 @@ import Container from '@mui/material/Container';
 import { createStyles, createTheme, ThemeProvider } from '@mui/material/styles';
 import { green } from '@mui/material/colors';
 import SignInSide from '../SingIn/SignInSide';
+import { padding } from '@mui/system';
 
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
+            <Link color="inherit" href="http://www.sistemasdiamond.com.br/">
+                Sistemas Diamond
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -55,12 +56,13 @@ export default function SignUp() {
                     {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar> */}
+
                     <Grid item xs={12}>
                         <img style={{ marginBottom: 30 }} src="/sistemasDiamondLogo.png" alt="" />
                     </Grid>
 
                     <Typography component="h1" variant="h5">
-                        Cadastre-se
+                        Crie sua conta!
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
@@ -71,7 +73,7 @@ export default function SignUp() {
                                     required
                                     fullWidth
                                     id="firstName"
-                                    label="First Name"
+                                    label="Primeiro Nome"
                                     autoFocus
                                 />
                             </Grid>
@@ -80,7 +82,7 @@ export default function SignUp() {
                                     required
                                     fullWidth
                                     id="lastName"
-                                    label="Last Name"
+                                    label="Último Nome"
                                     name="lastName"
                                     autoComplete="family-name"
                                 />
@@ -90,7 +92,7 @@ export default function SignUp() {
                                     required
                                     fullWidth
                                     id="email"
-                                    label="Email Address"
+                                    label="Endereço de Email"
                                     name="email"
                                     autoComplete="email"
                                 />
@@ -100,7 +102,7 @@ export default function SignUp() {
                                     required
                                     fullWidth
                                     name="password"
-                                    label="Password"
+                                    label="Senha"
                                     type="password"
                                     id="password"
                                     autoComplete="new-password"
@@ -120,12 +122,12 @@ export default function SignUp() {
                             sx={{ mt: 3, mb: 2 }}
 
                         >
-                            Sign Up
+                            Cadastrar se
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
                                 <Link href="#" variant="body2">
-                                    Already have an account? Sign in
+                                    Já possui uma conta? Faça seu login!
                                 </Link>
                             </Grid>
                         </Grid>

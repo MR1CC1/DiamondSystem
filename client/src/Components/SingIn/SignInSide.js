@@ -27,8 +27,8 @@ function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
+            <Link color="inherit" href="http://www.sistemasdiamond.com.br/">
+                Sistemas Diamond
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -58,7 +58,7 @@ export default function SignInSide() {
                     sm={4}
                     md={7}
                     sx={{
-                        backgroundImage: 'url(https://source.unsplash.com/random)',
+                        backgroundImage: 'url(/diamondHero_2.jpg)',
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) =>
                             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -76,11 +76,14 @@ export default function SignInSide() {
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                             <LockOutlinedIcon />
-                        </Avatar>
+                        </Avatar> */}
+                        <Grid item xs={12}>
+                            <img style={{ marginBottom: 30 }} src="/sistemasDiamondLogo.png" alt="" />
+                        </Grid>
                         <Typography component="h1" variant="h5">
-                            Sign in
+                            Login
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                             <TextField
@@ -88,7 +91,7 @@ export default function SignInSide() {
                                 required
                                 fullWidth
                                 id="email"
-                                label="Email Address"
+                                label="Endereço de Email"
                                 name="email"
                                 autoComplete="email"
                                 autoFocus
@@ -98,14 +101,14 @@ export default function SignInSide() {
                                 required
                                 fullWidth
                                 name="password"
-                                label="Password"
+                                label="Senha"
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
                             />
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
-                                label="Remember me"
+                                label="Continuar conectado"
                             />
                             <Button
                                 type="submit"
@@ -113,17 +116,17 @@ export default function SignInSide() {
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                             >
-                                Sign In
+                                Entrar
                             </Button>
                             <Grid container>
                                 <Grid item xs>
                                     <Link href="#" variant="body2">
-                                        Forgot password?
+                                        Esqueceu sua senha?
                                     </Link>
                                 </Grid>
                                 <Grid item>
                                     <Link href="#" variant="body2">
-                                        {"Don't have an account? SingUp"}
+                                        {"Você não tem uma conta? Crie uma!"}
                                     </Link>
                                 </Grid>
                             </Grid>
