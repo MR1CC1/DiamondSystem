@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createStyles, createTheme, ThemeProvider } from '@mui/material/styles';
 import { green } from '@mui/material/colors';
+import SignInSide from '../SingIn/SignInSide';
 
 function Copyright(props) {
     return (
@@ -117,6 +118,7 @@ export default function SignUp() {
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
+
                         >
                             Sign Up
                         </Button>
@@ -134,3 +136,5 @@ export default function SignUp() {
         </ThemeProvider>
     );
 }
+
+
