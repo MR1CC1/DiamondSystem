@@ -137,6 +137,9 @@ export default function SignInSide() {
                                 </Grid>
                             </Grid>
                             <Copyright sx={{ mt: 5 }} />
+                            <Link href="/test" variant="body2">
+                                {"Página Test Ricci"}
+                            </Link>
                         </Box>
                     </Box>
                 </Grid>
