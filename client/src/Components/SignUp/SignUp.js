@@ -15,6 +15,7 @@ import { createStyles, createTheme, ThemeProvider } from "@mui/material/styles";
 import { green } from "@mui/material/colors";
 import SignInSide from "../SingIn/SignInSide";
 import { padding } from "@mui/system";
+import Axios from "axios";
 
 function Copyright(props) {
   return (
@@ -41,10 +42,18 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      firstname: data.get("firstname"),
-      lastname: data.get("lastname"),
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
       email: data.get("email"),
       password: data.get("password"),
+    });
+    Axios.post("http://localhost:8080/auth/register", {
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
+      email: data.get("email"),
+      password: data.get("password"),
+    }).then((response) => {
+      console.log(response);
     });
   };
 
