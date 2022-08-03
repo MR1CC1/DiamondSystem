@@ -10,7 +10,7 @@ const connectToDatabase = async () => {
           error
         );
       }
-      return console.log("Conexao com o banco de dados com sucesso");
+      // return console.log("Conexao com o banco de dados com sucesso");
     }
   );
 };
