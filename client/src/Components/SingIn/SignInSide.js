@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -13,7 +13,6 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Axios from "axios";
 import { AuthContext } from "../Contexts/auth.jsx";
-import { useState } from "react";
 
 function Copyright(props) {
   return (
@@ -36,10 +35,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
-
-  const { authenticated, login } = useContext(AuthContext);
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const { authenticated, auth } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,7 +48,7 @@ export default function SignInSide() {
     })
       .then(function (response) {
         console.log(response);
-        login(response.data.token, response.data.user);
+        auth(response.data.token, response.data.user);
       })
       .catch(function (error) {
         console.log(error);
