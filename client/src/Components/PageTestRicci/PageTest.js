@@ -1,49 +1,56 @@
-import React from 'react'
-import Slider from '@mui/material/Slider';
-import Switch from '@mui/material/Switch';
-import Alert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
+// import React from 'react'
+// import Slider from '@mui/material/Slider';
+// import Switch from '@mui/material/Switch';
+// import Alert from '@mui/material/Alert';
+// import Button from '@mui/material/Button';
+// import Stack from '@mui/material/Stack';
+// import Snackbar from '@mui/material/Snackbar';
+// import MuiAlert, { AlertProps } from '@mui/material/Alert';
+// import { useState } from 'react';
 
-//Pagina para testar components do MUI
+// //Pagina para testar components do MUI
 
-const PageTest = () => {
+// // <Switch {...label} defaultChecked />
 
-    const label = { inputProps: { 'aria-label': 'Switch demo' } };
+
+// const PageTest = () => {
+//     const n = 1;
+//     const [check, setCheck] = useState(false);
+
+//     const handleChecked = (e) => {
+//         setCheck(e.target.checked);
+//     }
+
+
+//     return (
+//         <>
+//             <input
+//                 type="checkbox"
+//                 checked={check}
+//                 onChange={handleChecked}
+//             />
+
+//             {check === true ? (<Alert severity="success">This is a success alert — check it out!</Alert>) : (<Alert severity="error">This is an error alert — check it out!</Alert>)}
+//         </>
+//     )
+
+// }
+
+// export default PageTest
+
+
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+function PageTest() {
+    const notify = () => toast("Wow so easy!");
     return (
-        <>
-            <Slider
-                defaultValue={30}
-                sx={{
-                    width: 300,
-                    color: 'success.main',
-                    '& .MuiSlider-thumb': {
-                        borderRadius: '1px',
-                    },
-                }}
-            />
-
-            <Switch {...label} defaultChecked />
-            <Switch {...label} />
-            <Switch {...label} disabled defaultChecked />
-            <Switch {...label} disabled />
-
-            <Stack sx={{ width: '100%' }} spacing={2}>
-                <Alert onClose={() => { }}>This is a success alert — check it out!</Alert>
-                <Alert
-                    action={
-                        <Button color="inherit" size="small">
-                            UNDO
-                        </Button>
-                    }
-                >
-                    This is a success alert — check it out!
-                </Alert>
-            </Stack>
-        </>
-    )
+        <div>
+            <button onClick={notify}>Notify!</button>
+            <ToastContainer />
+        </div>
+    );
 }
 
 export default PageTest

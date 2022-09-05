@@ -13,6 +13,10 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Axios from "axios";
 import { AuthContext } from "../Contexts/auth.jsx";
+import Alert from '@mui/material/Alert';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 function Copyright(props) {
   return (
@@ -52,11 +56,21 @@ export default function SignInSide() {
       })
       .catch(function (error) {
         console.log(error);
+        toast.error(error.response.data.error);
       });
   };
 
   return (
     <ThemeProvider theme={theme}>
+      <ToastContainer position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover />
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
