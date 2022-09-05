@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,6 +15,8 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Axios from "axios";
 import Home from "../Home/Home";
+import { AuthContext } from "../Contexts/auth.jsx";
+import { useState } from "react";
 
 function Copyright(props) {
     return (
@@ -36,24 +39,35 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get("email"),
-            password: data.get("password"),
-        });
-        Axios.post("http://localhost:8080/auth/authenticate", {
-            email: data.get("email"),
-            password: data.get("password"),
-        })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    };
+
+    const { authenticated, login } = useContext(AuthContext)
+
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("submit", { email, password })
+        login(email, password);
+    }
+
+
+    // event.preventDefault();
+    // const data = new FormData(event.currentTarget);
+    // console.log({
+    //     email: data.get("email"),
+    //     password: data.get("password"),
+    // });
+    // Axios.post("http://localhost:8080/auth/authenticate", {
+    //     email: data.get("email"),
+    //     password: data.get("password"),
+    // })
+    //     .then(function (response) {
+    //         console.log(response);
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
 
     return (
         <ThemeProvider theme={theme}>
@@ -98,6 +112,7 @@ export default function SignInSide() {
                         <Typography component="h1" variant="h5">
                             Login
                         </Typography>
+                        <p>{String(authenticated)}</p>
                         <Box
                             component="form"
                             noValidate
@@ -113,6 +128,8 @@ export default function SignInSide() {
                                 name="email"
                                 autoComplete="email"
                                 autoFocus
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                             <TextField
                                 margin="normal"
@@ -123,6 +140,8 @@ export default function SignInSide() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
@@ -133,7 +152,7 @@ export default function SignInSide() {
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
-                                href="/home"
+                            // href="/"
                             >
                                 Entrar
                             </Button>
@@ -144,7 +163,7 @@ export default function SignInSide() {
                                     </Link>
                                 </Grid>
                                 <Grid item>
-                                    <Link href="/signin" variant="body2">
+                                    <Link href="/signup" variant="body2">
                                         {"Você não tem uma conta? Crie uma!"}
                                     </Link>
                                 </Grid>
