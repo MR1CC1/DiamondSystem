@@ -22,12 +22,10 @@ const Home = () => {
         logout();
     }
 
-
     if (loading) {
 
         <div className="loading">Carregando Dados...</div>
     }
-
 
     return (
         <>
