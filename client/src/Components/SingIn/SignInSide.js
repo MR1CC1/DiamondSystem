@@ -13,10 +13,9 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Axios from "axios";
 import { AuthContext } from "../Contexts/auth.jsx";
-import Alert from '@mui/material/Alert';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
-
+import Alert from "@mui/material/Alert";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 function Copyright(props) {
   return (
@@ -62,7 +61,8 @@ export default function SignInSide() {
 
   return (
     <ThemeProvider theme={theme}>
-      <ToastContainer position="top-right"
+      <ToastContainer
+        position="top-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -70,7 +70,8 @@ export default function SignInSide() {
         rtl={false}
         pauseOnFocusLoss={false}
         draggable
-        pauseOnHover />
+        pauseOnHover
+      />
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
@@ -165,9 +166,6 @@ export default function SignInSide() {
                 </Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />
-              <Link href="/test" variant="body2">
-                {"Página Test Ricci"}
-              </Link>
             </Box>
           </Box>
         </Grid>

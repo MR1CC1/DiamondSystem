@@ -29,7 +29,6 @@ const Home = () => {
   return (
     <>
       <Dashboard></Dashboard>
-      {/* <TableUser></TableUser> */}
     </>
   );
 };

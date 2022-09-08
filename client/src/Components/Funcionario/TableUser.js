@@ -22,40 +22,33 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 import Axios from "axios";
-import YAML from "yaml";
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(id, name, email, office, createdAt) {
   return {
+    id,
     name,
-    calories,
-    fat,
-    carbs,
-    protein,
+    email,
+    office,
+    createdAt,
   };
 }
 
-const rows = [
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Donut", 452, 25.0, 51, 4.9),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-  createData("Honeycomb", 408, 3.2, 87, 6.5),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Jelly Bean", 375, 0.0, 94, 0.0),
-  createData("KitKat", 518, 26.0, 65, 7.0),
-  createData("Lollipop", 392, 0.2, 98, 0.0),
-  createData("Marshmallow", 318, 0, 81, 2.0),
-  createData("Nougat", 360, 19.0, 9, 37.0),
-  createData("Oreo", 437, 18.0, 63, 4.0),
-];
+let rows = [];
 
 Axios.get("http://localhost:8080/users", {})
   .then(function (response) {
-    console.log(response.request.response);
-    // const doc = new YAML.Document();
-    // doc.contents = response.request.response;
-    // var arr = doc.toString();
+    var arrUsers = response.data.users;
+    for (let i = 0; i < arrUsers.length; i++) {
+      rows.push(
+        createData(
+          i + 1,
+          arrUsers[i].firstName,
+          arrUsers[i].email,
+          "Funcionario",
+          arrUsers[i].createdAt
+        )
+      );
+    }
   })
   .catch(function (error) {
     console.log(error);
@@ -77,8 +70,6 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// This method is created for cross-browser compatibility, if you don't
-// need to support IE11, you can use Array.prototype.sort() directly
 function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
@@ -93,34 +84,34 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: "name",
+    id: "id",
     numeric: false,
     disablePadding: true,
-    label: "Dessert (100g serving)",
+    label: "ID",
   },
   {
-    id: "calories",
-    numeric: true,
+    id: "name",
+    numeric: false,
     disablePadding: false,
-    label: "Calories",
+    label: "Nome",
   },
   {
-    id: "fat",
-    numeric: true,
+    id: "email",
+    numeric: false,
     disablePadding: false,
-    label: "Fat (g)",
+    label: "Email",
   },
   {
-    id: "carbs",
-    numeric: true,
+    id: "office",
+    numeric: false,
     disablePadding: false,
-    label: "Carbs (g)",
+    label: "Cargo",
   },
   {
-    id: "protein",
-    numeric: true,
+    id: "createdAt",
+    numeric: false,
     disablePadding: false,
-    label: "Protein (g)",
+    label: "Criado",
   },
 ];
 
@@ -188,7 +179,6 @@ EnhancedTableHead.propTypes = {
 
 const EnhancedTableToolbar = (props) => {
   const { numSelected } = props;
-
   return (
     <Toolbar
       sx={{
@@ -219,7 +209,7 @@ const EnhancedTableToolbar = (props) => {
           id="tableTitle"
           component="div"
         >
-          Nutrition
+          Funcionarios
         </Typography>
       )}
 
@@ -267,12 +257,12 @@ export default function EnhancedTable() {
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event, id) => {
+    const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, id);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -283,7 +273,6 @@ export default function EnhancedTable() {
         selected.slice(selectedIndex + 1)
       );
     }
-
     setSelected(newSelected);
   };
 
@@ -300,7 +289,7 @@ export default function EnhancedTable() {
     setDense(event.target.checked);
   };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
+  const isSelected = (id) => selected.indexOf(id) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -325,22 +314,20 @@ export default function EnhancedTable() {
               rowCount={rows.length}
             />
             <TableBody>
-              {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                 rows.slice().sort(getComparator(order, orderBy)) */}
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => handleClick(event, row.id)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.id}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -358,12 +345,12 @@ export default function EnhancedTable() {
                         scope="row"
                         padding="none"
                       >
-                        {row.name}
+                        {row.id}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">{row.name}</TableCell>
+                      <TableCell align="right">{row.email}</TableCell>
+                      <TableCell align="right">{row.office}</TableCell>
+                      <TableCell align="right">{row.createdAt}</TableCell>
                     </TableRow>
                   );
                 })}
