@@ -179,6 +179,9 @@ EnhancedTableHead.propTypes = {
 
 const EnhancedTableToolbar = (props) => {
   const { numSelected } = props;
+  const deleteHandle = () => {
+    console.log("delete");
+  };
   return (
     <Toolbar
       sx={{
@@ -216,7 +219,7 @@ const EnhancedTableToolbar = (props) => {
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
-            <DeleteIcon />
+            {/* <DeleteIcon onPress={() => deleteHandle()} /> */}
           </IconButton>
         </Tooltip>
       ) : (
@@ -273,6 +276,8 @@ export default function EnhancedTable() {
         selected.slice(selectedIndex + 1)
       );
     }
+
+    console.log(newSelected);
     setSelected(newSelected);
   };
 
