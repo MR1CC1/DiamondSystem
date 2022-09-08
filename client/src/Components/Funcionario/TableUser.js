@@ -22,6 +22,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 import Axios from "axios";
+import { Button } from "@mui/material";
 
 function createData(id, name, email, office, createdAt) {
   return {
@@ -179,9 +180,6 @@ EnhancedTableHead.propTypes = {
 
 const EnhancedTableToolbar = (props) => {
   const { numSelected } = props;
-  const deleteHandle = () => {
-    console.log("delete");
-  };
   return (
     <Toolbar
       sx={{
@@ -219,7 +217,7 @@ const EnhancedTableToolbar = (props) => {
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
-            {/* <DeleteIcon onPress={() => deleteHandle()} /> */}
+            <DeleteIcon />
           </IconButton>
         </Tooltip>
       ) : (
