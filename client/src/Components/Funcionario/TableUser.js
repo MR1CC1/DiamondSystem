@@ -350,10 +350,10 @@ export default function EnhancedTable() {
                       >
                         {row.id}
                       </TableCell>
-                      <TableCell align="right">{row.name}</TableCell>
-                      <TableCell align="right">{row.email}</TableCell>
-                      <TableCell align="right">{row.office}</TableCell>
-                      <TableCell align="right">{row.createdAt}</TableCell>
+                      <TableCell align="left">{row.name}</TableCell>
+                      <TableCell align="left">{row.email}</TableCell>
+                      <TableCell align="left">{row.office}</TableCell>
+                      <TableCell align="left">{row.createdAt}</TableCell>
                     </TableRow>
                   );
                 })}
